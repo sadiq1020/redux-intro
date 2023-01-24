@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { createContext, useState } from 'react';
 import './App.css';
+import Parent from './Pages/Parent';
+
+const COUNTER_CONTEXT = createContext();
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  const value = { count, setCount }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <COUNTER_CONTEXT.Provider value={value}>
+      <div className="flex justify-center">
+        <Parent></Parent>
+      </div>
+    </COUNTER_CONTEXT.Provider>
+
   );
 }
 
